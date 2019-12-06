@@ -1,0 +1,32 @@
+textarea {
+	resize: none;
+}
+
+a {
+	cursor: pointer;
+}
+
+.sweet-alert button{
+	width: 100px;
+}
+
+.btn {
+	width: 100px;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #fcfcfd !important;
+}
+
+.hide {
+	display: none;
+}
+
+.green {
+	color: #4ca746;
+}
+
+.red {
+	color: #dc3544;
+}
+
