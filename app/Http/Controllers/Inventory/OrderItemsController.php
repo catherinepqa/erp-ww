@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;
 
+use App\Http\Controllers\Controller;
 use App\Models\TransferOrders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,6 +39,6 @@ class OrderItemsController extends Controller
             TransferOrders::updateStatus($value);
         }
 
-        return redirect()->route('inventory.order_items')->with('success', 'Successfully Approved the Order Items');
+        return redirect()->route('order_items')->with('success', 'Successfully Approved the Order Items');
     }
 }

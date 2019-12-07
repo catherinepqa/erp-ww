@@ -17,6 +17,7 @@
 @endsection
 
 @section('css')
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
     <style>
         .required {
             color: red;
@@ -59,7 +60,7 @@
             <div class="card">
                 <div class="action-btn">
                     <button class="btn btn-success btnSave" type="button">Save</button>
-                    <a href="{{ route('inventory.adjustment') }}" class="btn btn-danger">Cancel</a>
+                    <a href="{{ route('inventory_adjustment') }}" class="btn btn-danger">Cancel</a>
                     <button class="btn btn-info" type="button">Reset</button>
                 </div>
 
@@ -70,7 +71,7 @@
                 </div>
 
                 <div class="body">
-                    <form action="{{ route('inventory.addingData') }}" method="post" id="dataForm">
+                    <form action="{{ route('inventory_adjustment_addingData') }}" method="post" id="dataForm">
                         @csrf
                         <div class="row">
                             <div class="col-lg-4">
@@ -181,7 +182,7 @@
             <br>
             <div class="action-btn" style="margin-bottom: 5%;">
                 <button class="btn btn-success btnSave" type="button">Save</button>
-                <a href="{{ route('inventory.adjustment') }}" class="btn btn-danger">Cancel</a>
+                <a href="{{ route('inventory_adjustment') }}" class="btn btn-danger">Cancel</a>
                 <button class="btn btn-info" type="button">Reset</button>
             </div>
         </div>
@@ -470,13 +471,15 @@
     @endif
 @endsection
 
-@section('js')
-<script>
-    var searchPath = "{{ route('inventory.item_search') }}";
-    var getItem = "{{ route('inventory.getItems') }}";
-    var getLocation = "{{ route('inventory.getLocation') }}";
-    var success_msg = "{{ session()->get('success') }}";
-    var getBin = "{{ route('inventory.getBin') }}";
-</script>
-<script src="{{ URL::asset('assets/js/pages/inventory_adjustment/add_inventory_adjustment.js') }}"></script>
+@section('script')
+    <script src="{{ URL::asset('assets/vendor/typeahead/typeahead.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script>
+        var searchPath = "{{ route('inventory_adjustment_item_search') }}";
+        var getItem = "{{ route('inventory_adjustment_getItems') }}";
+        var getLocation = "{{ route('inventory_adjustment_getLocation') }}";
+        var success_msg = "{{ session()->get('success') }}";
+        var getBin = "{{ route('inventory_adjustment_getBin') }}";
+    </script>
+    <script src="{{ URL::asset('js/pages/inventory_adjustment/add_inventory_adjustment.js') }}"></script>
 @endsection

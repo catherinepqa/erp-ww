@@ -200,16 +200,24 @@
                             <a href="{{ route('dashboard.index') }}"><i class="icon-speedometer"></i><span>Dashboard</span></a>
                         </li>
 
-                        <li class="{{ request()->routeIs('inventory*') ? 'active open' : '' }}">
+                        <li class="{{ Request::is('inventory/*') ? 'active open' : '' }}">
                             <a href="#Inventory" class="has-arrow"><i class="fa fa-th-large"></i></i><span>Inventory</span></a>
                             <ul>
-                                <li class="{{ (request()->is('inventory_adjustment')) ? 'active' : '' }}"><a href="{{ route('inventory.adjustment') }}">Inventory Adjustment</a></li>
-                                <li class="{{ (request()->is('bin_transfer')) ? 'active' : '' }}"><a href="{{ route('inventory.bin_transfer') }}">Bin Transfer </a></li>
-                                 <li class="{{ (request()->is('transfer_inventory')) ? 'active' : '' }}"><a href="{{ route('inventory.transfer') }}">Transfer Inventory</a></li>
-                                 <li class="{{ (request()->is('reallocate_item')) ? 'active' : '' }}"><a href="{{ route('inventory.reallocate_item') }}">Reallocate Items</a>
+                                <li class="{{ (request()->is('inventory/inventory_adjustment')) || Request::is('inventory/inventory_adjustment/*') ? 'active' : '' }}">
+                                    <a href="{{ route('inventory_adjustment') }}">Inventory Adjustment</a>
+                                </li>
+                                <li><a href="">Bin Transfer </a></li>
+                                <li class="{{ (request()->is('inventory/transfer_inventory')) || Request::is('inventory/transfer_inventory/*') ? 'active' : '' }}">
+                                    <a href="{{ route('transfer_inventory') }}">Transfer Inventory</a>
+                                </li>
+                                <li><a>Reallocate Items</a>
                                 <li><a href="">Inventory Distribution</a></li>
-                                <li class="{{ (request()->is('transfer_orders')) ? 'active' : '' }}"><a href="{{ route('inventory.transfer_orders') }}">Transfer Orders</a></li>
-                                <li class="{{ (request()->is('order_items')) ? 'active' : '' }}"><a href="{{ route('inventory.order_items') }}">Order Items & Approval</a></li>
+                                <li class="{{ (request()->is('inventory/transfer_orders')) || Request::is('inventory/transfer_orders/*') ? 'active' : '' }}">
+                                    <a href="{{ route('transfer_orders') }}">Transfer Orders</a>
+                                </li>
+                                <li class="{{ (request()->is('inventory/order_items')) || Request::is('inventory/order_items/*') ? 'active' : '' }}">
+                                    <a href="{{ route('order_items') }}">Order Items & Approval</a>
+                                </li>
                                 <li><a href="">Commit Orders</a></li>
                                 <li><a href="">Negative Inventory</a></li>
                             </ul>
@@ -219,7 +227,7 @@
                             <a href="#Customer" class="has-arrow"><i class="fa fa-users"></i><span>Customers</span></a>
                             <ul>
                                 <li><a href="">Customers</a></li>
-                                <li class="{{ (request()->is('customer_payment')) ? 'active' : '' }}"><a href="{{ route('customers.payment') }}">Customer Payment</a></li>
+                                <li class="{{ (request()->is('customer_payment')) ? 'active' : '' }}"><a href="#">Customer Payment</a></li>
                                 <li><a href="">Customer Refund</a></li>
                                 <li><a href="">Assessment & Approval of Customer Refund</a></li>
                                 <li><a href="">Customer Cases</a></li>

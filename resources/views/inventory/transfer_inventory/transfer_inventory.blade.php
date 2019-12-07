@@ -44,7 +44,7 @@
         </nav>
     </div>
     <div class="col-md-6 col-sm-12 text-right hidden-xs">
-        <a href="{{ route('inventory.addTransfer') }}" class="btn btn-sm btn-primary" title="">New Transaction</a>
+        <a href="{{ route('new_transfer_inventory') }}" class="btn btn-sm btn-primary" title="">New Transaction</a>
     </div>
 @endsection
 
@@ -150,7 +150,7 @@
     </div>
 @endsection
 
-@section('js')
+@section('script')
     <script src="{{ URL::asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
     <script src="{{ URL::asset('assets/vendor/jquery-datatable/buttons/dataTables.buttons.min.js') }}"></script>
     <script src="{{ URL::asset('assets/vendor/jquery-datatable/buttons/buttons.bootstrap4.min.js') }}"></script>
@@ -161,10 +161,10 @@
     <script src="{{ URL::asset('assets/vendor/jquery-datatable/pdfmake/vfs_fonts.js') }}"></script>
 
     <script>
-        var data_url = "{{route('inventory.transfer_getAllData')}}";
-        var edit_url = "{{ route("inventory.transfer_editTransfer", ":slug") }}";
-        var view_url = "{{ route("inventory.transfer_viewTransfer", ":slug") }}";
+        var data_url = "{{ route('transfer_inventory_getAllData') }}";
+        var edit_url = "{{ route("edit_transfer_inventory", ":slug") }}";
+        var view_url = "{{ route("view_transfer_inventory", ":slug") }}";
     </script>
 
-    <script src="{{ URL::asset('assets/js/pages/transfer_inventory/index.js') }}"></script>
+    <script src="{{ URL::asset('js/pages/transfer_inventory/index.js') }}"></script>
 @endsection

@@ -3,6 +3,7 @@
 @section('title', 'View Transfer Inventory')
 
 @section('css')
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/sweetalert/sweetalert.css') }}">
     <style>
         .required {
             color: red;
@@ -50,6 +51,9 @@
                 <li class="breadcrumb-item active" aria-current="page">View Transfer Inventory</li>
             </ol>
         </nav>
+    </div>
+    <div class="col-md-6 col-sm-12 text-right hidden-xs">
+        <a href="#" class="btn btn-sm btn-primary" onclick="editData({{ $data_arr[0]['transfer_inventory_id'] }})" title="">Edit View</a>
     </div>
 @endsection
 
@@ -215,12 +219,15 @@
     @endif
 @endsection
 
-@section('js')
+@section('script')
+    <script src="{{ URL::asset('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
     <script>
         var success_msg = "{{ session()->get('success') }}";
         var page_id = "{{ $data_arr[0]['transfer_inventory_id'] }}";
-        var ajaxTbl = "{{ route('inventory.transfer_dataList') }}";
-        var getTransferredBins = "{{ route('inventory.transfer_getTransferredBins') }}";
+        var ajaxTbl = "{{ route('transfer_inventory_dataList') }}";
+        var getTransferredBins = "{{ route('transfer_inventory_getTransferredBins') }}";
+        var edit_url = "{{ route("edit_transfer_inventory", ":slug") }}";
     </script>
-    <script src="{{ URL::asset('assets/js/pages/transfer_inventory/view_transfer.js') }}"></script>
+    <script src="{{ URL::asset('js/pages/transfer_inventory/view_transfer.js') }}"></script>
 @endsection

@@ -3,6 +3,8 @@
 @section('title', 'Update Transfer Orders')
 
 @section('css')
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css') }}">
     <style>
         .required {
             color: red;
@@ -55,14 +57,14 @@
 @endsection
 
 @section('content')
-<form method="post" action="{{ route('inventory.order_updateData') }}">
+<form method="post" action="{{ route('transfer_orders_updateData') }}">
     @csrf
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="actionBtn">
                     <button class="btn btn-success" type="submit">Save</button>
-                    <button class="btn btn-danger" type="button">Cancel</button>
+                    <a class="btn btn-danger" href="{{ route('transfer_orders') }}">Cancel</a>
                     <button class="btn btn-info" type="button">Reset</button>
                     <button id="btnGroupDrop1" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         Actions
@@ -272,7 +274,7 @@
 
             <div class="actionBtn" style="margin-bottom: 5%;">
                 <button class="btn btn-success" type="submit">Save</button>
-                <button class="btn btn-danger" type="button">Cancel</button>
+                <a class="btn btn-danger" href="{{ route('transfer_orders') }}">Cancel</a>
                 <button class="btn btn-info" type="button">Reset</button>
                 <button id="btnGroupDrop1" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Actions
@@ -465,12 +467,15 @@
 </div>
 @endsection
 
-@section('js')
+@section('script')
+    <script src="{{ URL::asset('assets/vendor/typeahead/typeahead.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
     <script>
-        var searchPath = "{{ route('inventory.order_item_search') }}";
-        var getItem = "{{ route('inventory.order_getItems') }}";
+        var searchPath = "{{ route('transfer_orders_item_search') }}";
+        var getItem = "{{ route('transfer_orders_getItems') }}";
         var system_id = "{{ $data_arr[0]['transfer_order_id'] }}";
-        var ajaxTbl = "{{ route('inventory.order_dataList') }}";
+        var ajaxTbl = "{{ route('transfer_orders_dataList') }}";
     </script>
-    <script src="{{ URL::asset('assets/js/pages/transfer_order/edit_transfer_order.js') }}"></script>
+    <script src="{{ URL::asset('js/pages/transfer_order/edit_transfer_order.js') }}"></script>
 @endsection

@@ -94,3 +94,9 @@ function inventoryDetail(item_code, dataClass, item_id) {
     });
     $(".alert_close").trigger("click");
 }
+
+function editData(id) {
+    var url = edit_url;
+    url = url.replace(':slug', id);
+    window.location.href=url;
+}

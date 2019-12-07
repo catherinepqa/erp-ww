@@ -3,6 +3,7 @@
 @section('title', 'View Transfer Orders')
 
 @section('css')
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/sweetalert/sweetalert.css') }}">
     <style>
         .fa-file-excel-o {
             color : #28a745;
@@ -222,7 +223,7 @@
     </div>
 </div>
 
-<form method="post" action="{{ route('inventory.order_approveStatus') }}" id="updateStatus">
+<form method="post" action="{{ route('transfer_orders_approveStatus') }}" id="updateStatus">
     @csrf
     <input type="hidden" name="status_id" value="{{ $data_arr[0]['transfer_order_id'] }}">
 </form>
@@ -232,14 +233,14 @@
 @endif
 @endsection
 
-@section('js')
+@section('script')
+    <script src="{{ URL::asset('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
     <script>
         var success_msg = "{{ session()->get('success') }}";
-        var searchPath = "{{ route('inventory.order_item_search') }}";
-        var getItem = "{{ route('inventory.order_getItems') }}";
-        var ajaxTbl = "{{ route('inventory.order_dataList') }}";
+        var ajaxTbl = "{{ route('transfer_orders_dataList') }}";
         var page_id = "{{ $data_arr[0]['transfer_order_id'] }}";
-        var edit_url = "{{ route("inventory.order_editOrder", ":slug") }}";
+        var edit_url = "{{ route("edit_transfer_orders", ":slug") }}";
     </script>
-    <script src="{{ URL::asset('assets/js/pages/transfer_order/view_transfer_order.js') }}"></script>
+    <script src="{{ URL::asset('js/pages/transfer_order/view_transfer_order.js') }}"></script>
 @endsection

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;
 
+use App\Http\Controllers\Controller;
 use App\Models\BinItems;
 use App\Models\Countries;
 use App\Models\Departments;
@@ -148,7 +149,7 @@ class TransferInventoryController extends Controller
             }
 
         }
-        return redirect()->route('inventory.transfer_viewTransfer',
+        return redirect()->route('view_transfer_inventory',
             ['id' => $lastId])->with('success', 'Successfully Transferred an Inventory');
     }
 
@@ -365,7 +366,7 @@ class TransferInventoryController extends Controller
                 }
             }
 
-            return redirect()->route('inventory.transfer_viewTransfer', ['id' => $request->system_id])->with('success', 'Successfully Updated an Inventory Adjustment');
+            return redirect()->route('view_transfer_inventory', ['id' => $request->system_id])->with('success', 'Successfully Updated an Inventory Adjustment');
         }
     }
 }

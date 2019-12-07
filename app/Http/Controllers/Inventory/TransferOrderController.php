@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;
 
+use App\Http\Controllers\Controller;
 use App\Models\Commit;
 use App\Models\Departments;
 use App\Models\Items;
@@ -79,7 +80,7 @@ class TransferOrderController extends Controller
             }
         }
 
-        return redirect()->route('inventory.order_viewOrders',
+        return redirect()->route('view_transfer_orders',
             ['id' => $lastId])->with('success', 'Successfully Added Transferred the Order');
     }
 
@@ -182,7 +183,7 @@ class TransferOrderController extends Controller
             }
         }
 
-        return redirect()->route('inventory.order_viewOrders',
+        return redirect()->route('view_transfer_orders',
             ['id' => $system_id])->with('success', 'Successfully Updated Transferred the Order');
     }
 
@@ -192,7 +193,7 @@ class TransferOrderController extends Controller
 
         TransferOrders::updateStatus($approve_id);
 
-        return redirect()->route('inventory.order_viewOrders',
+        return redirect()->route('view_transfer_orders',
             ['id' => $approve_id])->with('success', 'Successfully Approved the Transferred Order');
     }
 }

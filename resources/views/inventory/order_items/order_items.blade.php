@@ -2,6 +2,11 @@
 
 @section('title', 'Order Items & Approval')
 
+@section('css')
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/sweetalert/sweetalert.css') }}">
+@endsection
+
 @section('breadcrumb')
     <div class="col-md-6 col-sm-12">
         <h1>Order Items & Approval</h1>
@@ -100,7 +105,7 @@
                     </div>
                 </div>
 
-                <form method="post" action="{{ route('inventory.order_approveOrder') }}" id="deleteForm">
+                <form method="post" action="{{ route('order_items_approveOrder') }}" id="deleteForm">
                     @csrf
                     <input type="hidden" class="delete_id" name="approved_id" value="">
                 </form>
@@ -113,11 +118,13 @@
 @endif
 @endsection
 
-@section('js')
+@section('script')
+    <script src="{{ URL::asset('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
     <script>
-        var data_url = "{{route('inventory.order_items_dataList')}}";
+        var data_url = "{{route('order_items_dataList')}}";
         var success_msg = "{{ session()->get('success') }}";
     </script>
 
-    <script src="{{ URL::asset('assets/js/pages/order_items/index.js') }}"></script>
+    <script src="{{ URL::asset('js/pages/order_items/index.js') }}"></script>
 @endsection

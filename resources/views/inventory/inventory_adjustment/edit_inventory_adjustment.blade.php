@@ -17,6 +17,8 @@
 @endsection
 
 @section('css')
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css') }}">
     <style>
         .required {
             color: red;
@@ -59,7 +61,7 @@
             <div class="card">
                 <div class="action-btn">
                     <button class="btn btn-success btnSave" type="button">Save</button>
-                    <a href="{{ route('inventory.adjustment') }}" class="btn btn-danger">Cancel</a>
+                    <a href="{{ route('inventory_adjustment') }}" class="btn btn-danger">Cancel</a>
                     <button class="btn btn-info" type="button">Reset</button>
                 </div>
                 <br>
@@ -68,7 +70,7 @@
                 </div>
 
                 <div class="body">
-                    <form action="{{ route('inventory.updateData') }}" method="post" id="updateDataForm">
+                    <form action="{{ route('inventory_adjustment_updateData') }}" method="post" id="updateDataForm">
                         @csrf
                         <div class="row">
                             <div class="col-lg-4">
@@ -181,7 +183,7 @@
             <br>
             <div class="action-btn" style="margin-bottom: 5%;">
                 <button class="btn btn-success btnSave" type="button">Save</button>
-                <a href="{{ route('inventory.adjustment') }}" class="btn btn-danger">Cancel</a>
+                <a href="{{ route('inventory_adjustment') }}" class="btn btn-danger">Cancel</a>
                 <button class="btn btn-info" type="button">Reset</button>
             </div>
         </div>
@@ -470,16 +472,19 @@
     @endif
 @endsection
 
-@section('js')
+@section('script')
+    <script src="{{ URL::asset('assets/vendor/typeahead/typeahead.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
     <script>
-        var searchPath = "{{ route('inventory.item_search') }}";
-        var getItem = "{{ route('inventory.getItems') }}";
-        var getLocation = "{{ route('inventory.getLocation') }}";
+        var searchPath = "{{ route('inventory_adjustment_item_search') }}";
+        var getItem = "{{ route('inventory_adjustment_getItems') }}";
+        var getLocation = "{{ route('inventory_adjustment_getLocation') }}";
         var success_msg = "{{ session()->get('success') }}";
-        var getBin = "{{ route('inventory.getBin') }}";
+        var getBin = "{{ route('inventory_adjustment_getBin') }}";
         var page_id = "{{ $data_arr['inventory_adjustment_id'] }}";
-        var ajaxTbl = "{{ route('inventory.dataList') }}";
-        var getAdjustedBins = "{{ route('inventory.getAdjustedBins') }}";
+        var ajaxTbl = "{{ route('inventory_adjustment_dataList') }}";
+        var getAdjustedBins = "{{ route('inventory_adjustment_getAdjustedBins') }}";
     </script>
-    <script src="{{ URL::asset('assets/js/pages/inventory_adjustment/edit_inventory_adjustment.js') }}"></script>
+    <script src="{{ URL::asset('js/pages/inventory_adjustment/edit_inventory_adjustment.js') }}"></script>
 @endsection

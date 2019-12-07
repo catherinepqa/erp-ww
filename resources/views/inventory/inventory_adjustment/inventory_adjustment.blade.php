@@ -44,7 +44,7 @@
         </nav>
     </div>
     <div class="col-md-6 col-sm-12 text-right hidden-xs">
-        <a href="{{ route('inventory.addAdjustment') }}" class="btn btn-sm btn-primary" title="">New Transaction</a>
+        <a href="{{ route('new_inventory_adjustment') }}" class="btn btn-sm btn-primary" title="">New Transaction</a>
     </div>
 @endsection
 
@@ -150,7 +150,7 @@
     </div>
 @endsection
 
-@section('js')
+@section('script')
     <script src="{{ URL::asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
     <script src="{{ URL::asset('assets/vendor/jquery-datatable/buttons/dataTables.buttons.min.js') }}"></script>
     <script src="{{ URL::asset('assets/vendor/jquery-datatable/buttons/buttons.bootstrap4.min.js') }}"></script>
@@ -161,10 +161,10 @@
     <script src="{{ URL::asset('assets/vendor/jquery-datatable/pdfmake/vfs_fonts.js') }}"></script>
 
     <script>
-        var data_url = "{{route('inventory.getAllData')}}";
-        var edit_url = "{{ route("inventory.editAdjustment", ":slug") }}";
-        var view_url = "{{ route("inventory.viewAdjustment", ":slug") }}";
+        var data_url = "{{route('inventory_adjustment_getAllData')}}";
+        var edit_url = "{{ route("edit_inventory_adjustment", ":slug") }}";
+        var view_url = "{{ route("view_inventory_adjustment", ":slug") }}";
     </script>
 
-    <script src="{{ URL::asset('assets/js/pages/inventory_adjustment/index.js') }}"></script>
+    <script src="{{ URL::asset('js/pages/inventory_adjustment/index.js') }}"></script>
 @endsection

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;
 
+use App\Http\Controllers\Controller;
 use App\Models\BinItems;
 use App\Models\InventoryAdjustedBins;
 use App\Models\InventoryAdjustedItems;
@@ -144,7 +145,7 @@ class InventoryAdjustmentController extends Controller
         }
 
         //return redirect('/inventory_adjustment')->with('success', 'Successfully Created a new Inventory Adjustment');
-        return redirect()->route('inventory.inventory_adjustment.view_inventory_adjustment',
+        return redirect()->route('new_inventory_adjustment',
             ['id' => $lastInsertedId])->with('success', 'Successfully Created a new Inventory Adjustment');
     }
 
@@ -317,7 +318,7 @@ class InventoryAdjustmentController extends Controller
             }
         }
 
-        return redirect()->route('inventory.view_adjustment', ['id' => $request->system_id])->with('success', 'Successfully Updated an Inventory Adjustment');
+        return redirect()->route('view_inventory_adjustment', ['id' => $request->system_id])->with('success', 'Successfully Updated an Inventory Adjustment');
     }
 
     public function getAllData()

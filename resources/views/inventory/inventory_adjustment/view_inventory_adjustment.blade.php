@@ -3,7 +3,7 @@
 @section('title', 'View Inventory Adjustment')
 
 @section('breadcrumb')
-    <div class="col-md-12 col-sm-12">
+    <div class="col-md-10 col-sm-12">
         <h1>View Inventory Adjustment</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -14,9 +14,13 @@
             </ol>
         </nav>
     </div>
+    <div class="col-md-2 col-sm-12 text-right hidden-xs">
+        <a href="#" class="btn btn-sm btn-primary" onclick="editData({{ $data_arr['inventory_adjustment_id'] }})" title="">Edit View</a>
+    </div>
 @endsection
 
 @section('css')
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/sweetalert/sweetalert.css') }}">
     <style>
         .required {
             color: red;
@@ -233,16 +237,19 @@
     @endif
 @endsection
 
-@section('js')
+@section('script')
+    <script src="{{ URL::asset('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
     <script>
-        var searchPath = "{{ route('inventory.item_search') }}";
-        var getItem = "{{ route('inventory.getItems') }}";
-        var getLocation = "{{ route('inventory.getLocation') }}";
+        var searchPath = "{{ route('inventory_adjustment_item_search') }}";
+        var getItem = "{{ route('inventory_adjustment_getItems') }}";
+        var getLocation = "{{ route('inventory_adjustment_getLocation') }}";
         var success_msg = "{{ session()->get('success') }}";
-        var getBin = "{{ route('inventory.getBin') }}";
+        var getBin = "{{ route('inventory_adjustment_getBin') }}";
         var page_id = "{{ $data_arr['inventory_adjustment_id'] }}";
-        var ajaxTbl = "{{ route('inventory.dataList') }}";
-        var getAdjustedBins = "{{ route('inventory.getAdjustedBins') }}";
+        var ajaxTbl = "{{ route('inventory_adjustment_dataList') }}";
+        var getAdjustedBins = "{{ route('inventory_adjustment_getAdjustedBins') }}";
+        var edit_url = "{{ route("edit_inventory_adjustment", ":slug") }}";
     </script>
-    <script src="{{ URL::asset('assets/js/pages/inventory_adjustment/view.js') }}"></script>
+    <script src="{{ URL::asset('js/pages/inventory_adjustment/view.js') }}"></script>
 @endsection

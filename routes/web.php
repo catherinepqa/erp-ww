@@ -22,7 +22,51 @@ Route::apiResource('dashboard', 'DashboardController');
 Route::post('dashboard', ['as' => 'dashboard.index', 'uses' => 'DashboardController@index']);
 
 //-------- INVENTORY --------//
+Route::group(['name' => 'inventory.', 'prefix' => 'inventory', 'namespace' => 'Inventory'], function () {
+    Route::get('inventory_adjustment', 'InventoryAdjustmentController@index')->name('inventory_adjustment');
+    Route::get('inventory_adjustment/new', 'InventoryAdjustmentController@addAdjustment')->name('new_inventory_adjustment');
+    Route::get('adjustment_item_search', 'InventoryAdjustmentController@item_search')->name('inventory_adjustment_item_search');
+    Route::get('adjustment_getItems', 'InventoryAdjustmentController@getItems')->name('inventory_adjustment_getItems');
+    Route::get('adjustment_getLocation', 'InventoryAdjustmentController@getLocation')->name('inventory_adjustment_getLocation');
+    Route::post('adjustment_addingData', 'InventoryAdjustmentController@addingData')->name('inventory_adjustment_addingData');
+    Route::get('adjustment_getBin', 'InventoryAdjustmentController@getBin')->name('inventory_adjustment_getBin');
+    Route::get('inventory_adjustment/edit/{id}', 'InventoryAdjustmentController@editAdjustment')->name('edit_inventory_adjustment');
+    Route::get('adjustment_dataList', 'InventoryAdjustmentController@dataList')->name('inventory_adjustment_dataList');
+    Route::get('adjustment_getAdjustedBins', 'InventoryAdjustmentController@getAdjustedBins')->name('inventory_adjustment_getAdjustedBins');
+    Route::post('adjustment_updateData', 'InventoryAdjustmentController@updateData')->name('inventory_adjustment_updateData');
+    Route::get('adjustment_getAllData', 'InventoryAdjustmentController@getAllData')->name('inventory_adjustment_getAllData');
+    Route::get('inventory_adjustment/view/{id}', 'InventoryAdjustmentController@viewAdjustment')->name('view_inventory_adjustment');
 
+    Route::get('transfer_inventory', 'TransferInventoryController@index')->name('transfer_inventory');
+    Route::get('transfer_inventory/new', 'TransferInventoryController@addTransfer')->name('new_transfer_inventory');
+    Route::get('transfer_inventory_item_search', 'TransferInventoryController@item_search')->name('transfer_inventory_item_search');
+    Route::get('transfer_inventory_getItems', 'TransferInventoryController@getItems')->name('transfer_inventory_getItems');
+    Route::post('transfer_inventory_addData', 'TransferInventoryController@addData')->name('transfer_inventory_addData');
+    Route::get('transfer_inventory/view/{id}', 'TransferInventoryController@viewTransfer')->name('view_transfer_inventory');
+    Route::get('transfer_inventory_getBin', 'TransferInventoryController@getBin')->name('transfer_inventory_getBin');
+    Route::get('transfer_inventory_getQtyAvailable', 'TransferInventoryController@getQtyAvailable')->name('transfer_inventory_getQtyAvailable');
+    Route::get('transfer_inventory_dataList', 'TransferInventoryController@dataList')->name('transfer_inventory_dataList');
+    Route::get('transfer_inventory_getTransferredBins', 'TransferInventoryController@getTransferredBins')->name('transfer_inventory_getTransferredBins');
+    Route::get('transfer_inventory_getAllData', 'TransferInventoryController@getAllData')->name('transfer_inventory_getAllData');
+    Route::get('transfer_inventory/edit/{id}', 'TransferInventoryController@editTransfer')->name('edit_transfer_inventory');
+    Route::post('transfer_inventory_updateData', 'TransferInventoryController@updateData')->name('transfer_inventory_updateData');
+
+    Route::get('transfer_orders', 'TransferOrderController@index')->name('transfer_orders');
+    Route::get('transfer_orders/new', 'TransferOrderController@addOrders')->name('new_transfer_orders');
+    Route::get('transfer_orders_item_search', 'TransferOrderController@item_search')->name('transfer_orders_item_search');
+    Route::get('transfer_orders_getItems', 'TransferOrderController@getItems')->name('transfer_orders_getItems');
+    Route::post('transfer_orders_addDataProcess', 'TransferOrderController@addDataProcess')->name('transfer_orders_addDataProcess');
+    Route::get('transfer_orders/view{id}', 'TransferOrderController@viewOrders')->name('view_transfer_orders');
+    Route::get('transfer_orders_dataList', 'TransferOrderController@dataList')->name('transfer_orders_dataList');
+    Route::get('transfer_orders_getAllData', 'TransferOrderController@getAllData')->name('transfer_orders_getAllData');
+    Route::get('transfer_orders/edit/{id}', 'TransferOrderController@editOrder')->name('edit_transfer_orders');
+    Route::post('transfer_orders_updateData', 'TransferOrderController@updateData')->name('transfer_orders_updateData');
+    Route::post('transfer_orders_approveStatus', 'TransferOrderController@approveStatus')->name('transfer_orders_approveStatus');
+
+    Route::get('order_items', 'OrderItemsController@index')->name('order_items');
+    Route::get('order_items_dataList', 'OrderItemsController@dataList')->name('order_items_dataList');
+    Route::post('order_items_approveOrder', 'OrderItemsController@approveOrder')->name('order_items_approveOrder');
+});
 
 //-------- CUSTOMERS --------//
 
@@ -45,7 +89,7 @@ Route::group(['name' => 'sales.', 'prefix' => 'sales', 'namespace' => 'Sales'], 
    	Route::get('invoices/new/{id}', 'InvoicesController@new')->name('new_invoices');
 
    	Route::post('create_invoice', 'InvoicesController@createInvoice')->name('create_invoice');
-    Route::get('sales_order', ['as' => 'sales.order', 'uses' => 'SalesController@sales_order']);
+    //Route::get('sales_order', ['as' => 'sales.order', 'uses' => 'SalesController@sales_order']);
     Route::get('currency_exchange', ['as' => 'sales.currency_exchange', 'uses' => 'SalesController@currency_exchange']);
 });
 
@@ -177,6 +221,7 @@ Route::get('exportTotalSales', ['as' => 'reports.exportTotalSales', 'uses' => 'R
 
 //-------- CASH SALES --------//
 Route::apiResource('cash_sales', 'CashSalesController');
+Route::get('cashsales', ['as' => 'sales.cashsales', 'uses' => 'SalesController@cashsales']);
 Route::get('create_cash_sales', ['as' => 'cash_sales.create', 'uses' => 'CashSalesController@create']);
 Route::post('store_cash_sales', ['as' => 'cash_sales.store', 'uses' => 'CashSalesController@store']);
 Route::get('checkItems', ['as' => 'cash_sales.checkItems', 'uses' => 'CashSalesController@checkItems']);

@@ -3,6 +3,8 @@
 @section('title', 'Update Transfer Inventory')
 
 @section('css')
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css') }}">
     <style>
         .required {
             color: red;
@@ -59,7 +61,7 @@
             <div class="card">
                 <div class="actionBtn">
                     <button class="btn btn-success btnSave" type="button">Save</button>
-                    <button class="btn btn-danger" type="button">Cancel</button>
+                    <a class="btn btn-danger" href="{{ route('transfer_inventory') }}">Cancel</a>
                     <button class="btn btn-info" type="button">Reset</button>
                 </div>
                 <br>
@@ -67,7 +69,7 @@
                     <h2>Primary Information</h2>
                 </div>
                 <div class="body">
-                    <form method="post" action="{{ route('inventory.transfer_updateData') }}" id="updateFormData">
+                    <form method="post" action="{{ route('transfer_inventory_updateData') }}" id="updateFormData">
                         @csrf
                         <div class="row">
                             <div class="col-lg-12">
@@ -183,7 +185,7 @@
         <div class="col-lg-12">
             <div class="actionBtn" style="margin-bottom: 5%;">
                 <button class="btn btn-success btnSave" type="button">Save</button>
-                <button class="btn btn-danger" type="button">Cancel</button>
+                <a class="btn btn-danger" href="{{ route('transfer_inventory') }}">Cancel</a>
                 <button class="btn btn-info" type="button">Reset</button>
             </div>
         </div>
@@ -402,15 +404,18 @@
     </div>
 @endsection
 
-@section('js')
+@section('script')
+    <script src="{{ URL::asset('assets/vendor/typeahead/typeahead.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
     <script>
-        var searchPath = "{{ route('inventory.transfer_item_search') }}";
-        var getItem = "{{ route('inventory.transfer_getItems') }}";
-        var getBin = "{{ route('inventory.transfer_getBin') }}";
-        var getQty = "{{ route('inventory.transfer_getQtyAvailable') }}";
-        var ajaxTbl = "{{ route('inventory.transfer_dataList') }}";
+        var searchPath = "{{ route('transfer_inventory_item_search') }}";
+        var getItem = "{{ route('transfer_inventory_getItems') }}";
+        var getBin = "{{ route('transfer_inventory_getBin') }}";
+        var getQty = "{{ route('transfer_inventory_getQtyAvailable') }}";
+        var ajaxTbl = "{{ route('transfer_inventory_dataList') }}";
         var system_id = "{{ $data_arr[0]['transfer_inventory_id'] }}";
-        var getTransferredBins = "{{ route('inventory.transfer_getTransferredBins') }}";
+        var getTransferredBins = "{{ route('transfer_inventory_getTransferredBins') }}";
     </script>
-    <script src="{{ URL::asset('assets/js/pages/transfer_inventory/edit_transfer.js') }}"></script>
+    <script src="{{ URL::asset('js/pages/transfer_inventory/edit_transfer.js') }}"></script>
 @endsection
